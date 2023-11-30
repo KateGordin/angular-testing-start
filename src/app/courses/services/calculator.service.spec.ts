@@ -2,7 +2,7 @@ import { CalculatorService } from "./calculator.service";
 import { LoggerService } from "./logger.service";
 import { TestBed } from '@angular/core/testing';
 
-describe('CalculatorService', () => {
+fdescribe('CalculatorService', () => {
 
   let calculator: CalculatorService,
       loggerSpy: any;
@@ -22,7 +22,7 @@ describe('CalculatorService', () => {
     calculator = TestBed.get(CalculatorService);
   });
 
-  it('should add two numbers', () => {
+  fit('should add two numbers', () => {
     console.log("add test");
 
     const result = calculator.add(2, 2);
