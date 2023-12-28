@@ -2,12 +2,10 @@ import { CalculatorService } from "./calculator.service";
 import { LoggerService } from "./logger.service";
 import { TestBed } from '@angular/core/testing';
 
-fdescribe('CalculatorService', () => {
+describe('CalculatorService', () => { // or fdescribe
 
   let calculator: CalculatorService,
       loggerSpy: any;
-
-
   beforeEach(() => {
     console.log("Calling beforeEach");
     loggerSpy = jasmine.createSpyObj('LoggerService', ["log"]);
@@ -19,10 +17,10 @@ fdescribe('CalculatorService', () => {
       ]
     });
 
-    calculator = TestBed.get(CalculatorService);
+    calculator = TestBed.inject(CalculatorService);
   });
 
-  fit('should add two numbers', () => {
+  it('should add two numbers', () => {
     console.log("add test");
 
     const result = calculator.add(2, 2);
