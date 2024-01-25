@@ -3,6 +3,7 @@ import { CoursesService } from "./courses.service";
 import { TestBed } from "@angular/core/testing";
 import { COURSES } from "../../../../server/db-data";
 import { after } from "cypress/types/lodash";
+import { Course } from "../model/course";
 
 describe('CoursesService', () => {
 
@@ -48,6 +49,24 @@ describe('CoursesService', () => {
 
     req.flush(COURSES[12]);
 
+  });
+
+  it('should save a course by id', () => {
+    const changes: Partial<Course> = 
+        {titles: {description: 'Testing Course'}};
+
+    coursesService.saveCourse(12, changes).subscribe(course => {
+        expect(course.id).toBe(12);
+    });
+
+    const req = httpTestingController.expectOne('/api/courses/12');
+    expect(req.request.method).toEqual("PUT");
+    expect(req.request.body.titles.description).toEqual(changes.titles.description);
+
+    req.flush({
+        ...COURSES[12],
+        ...changes
+    });
   });
 
   afterEach(() => {
