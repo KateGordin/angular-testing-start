@@ -22,8 +22,6 @@ fdescribe("Async testing examples", () => {
   it('Asynchronous test example - setTimeout()', fakeAsync(() => {
       
       let test = false;
-
-      setTimeout(() => {});
   
       setTimeout(() => {
   
@@ -32,7 +30,6 @@ fdescribe("Async testing examples", () => {
   
       }, 1000);
 
-      // tick(1000);
       flush();
 
       expect(test).toBeTruthy();
