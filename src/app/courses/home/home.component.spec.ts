@@ -99,6 +99,26 @@ describe('HomeComponent', () => {
 
   }));
 
+  it("should display advanced courses when tab clicked -- waitForAcync", waitForAsync (() => {
+
+    coursesService.findAllCourses.and.returnValue(of(setupCourses()));
+    fixture.detectChanges();
+    const tabs = el.queryAll(By.css('.mdc-tab'));
+    click(tabs[1]);
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+
+      console.log('Called whenStable()');
+
+      const cardTitles = el.queryAll(By.css('.mat-mdc-card-title'));
+      expect(cardTitles.length).toBeGreaterThan(0, 'Could not find card titles');
+      expect(cardTitles[0].nativeElement.textContent).toContain('Angular Testing Course');
+
+    });
+
+  }));
+
 });
 
 
